@@ -5,17 +5,36 @@ import TodoForm from './TodoForm';
 const TodoList = () => {
 
 
+    //states
     const [todos, setTodos] = useState([]);
 
-    const addTodo = todo => {
+    //functions 
+    //todo add
+    const addTodo = (todo) => {
         
         if(!todo.text || /^\s*$/.test(todo.text)) { //공백/empty 값 확인
-            return;
+            return console.log('Add erro - empty value');
         }
 
         const newTodos = [ todo, ...todos] // 기존의 배열 앞에 새로운 todo 할일 을 추가
         console.log(newTodos)
         setTodos(newTodos)
+    }
+
+    //todo delete
+    const removeTodo = (id) => {
+        const removedArr = todos.filter(todo => todo.id !== id); // todo.id 값과 id값이 일치하지 않는 새로운 배열을 반환
+        setTodos(removedArr);
+    }
+
+    //todo update
+    const updateTodo = (todoId, newValue) => {
+        if(!newValue.text || /^\s*$/.test(newValue.text)) {
+            return console.log('Update error - empty value');
+        }
+        setTodos(prev => prev.map(item => (item.id === todoId? newValue : item)))
+        //각 요소의 id가 todoId와 일치하는지 확인하여 일치하면 newValue로 대체하고, 일치하지 않으면 원래 요소인 item을 그대로 유지
+        // setTodos(변수명 => ...) 기존 값
     }
 
     return (

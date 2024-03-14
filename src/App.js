@@ -1,9 +1,10 @@
-import TodoList from './components/TodoList'
+import './App.css';
+import NoteList from './components/NoteList';
 
 const App = () => {
   return (
-    <div className="todo-app">
-      <TodoList></TodoList>
+    <div className="note-app">
+      <NoteList></NoteList>
     </div>
   )
 }
